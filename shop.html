@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Efootball Games Play Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .price-table {
+            background: rgba(0,0,0,0.6);
+            border-radius: 30px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid rgba(0,204,255,0.3);
+        }
+        .price-row:last-child { border: none; }
+        .coin-pack { font-weight: bold; }
+        .coin-cost { color: #00ccff; font-weight: bold; }
+        @media (max-width: 600px) {
+            .price-row { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <a href="index.html" class="logo">EFOOTBALL <span>GP</span></a>
+    <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+    <div class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="shop.html" class="active">SHOP</a>
+        <a href="proofs.html">PROOFS</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 style="text-align: center;">💰 COIN PRICES (REDUCED!)</h1>
+    <div class="price-table">
+        <div class="price-row"><span class="coin-pack">1,000 🪙</span><span class="coin-cost">$8 / ₹680</span></div>
+        <div class="price-row"><span class="coin-pack">2,130 🪙</span><span class="coin-cost">$16 / ₹1,360</span></div>
+        <div class="price-row"><span class="coin-pack">3,250 🪙</span><span class="coin-cost">$24 / ₹2,040</span></div>
+        <div class="price-row"><span class="coin-pack">5,700 🪙</span><span class="coin-cost">$40 / ₹3,400</span></div>
+        <div class="price-row"><span class="coin-pack">12,800 🪙</span><span class="coin-cost">$83 / ₹7,055</span></div>
+        <div class="price-row"><span class="coin-pack">25,600 🪙</span><span class="coin-cost">$161 / ₹13,685</span></div>
+    </div>
+
+    <!-- Live Coin Calculator -->
+    <div class="calculator">
+        <h2><i class="fas fa-calculator"></i> LIVE COIN CALCULATOR</h2>
+        <p>Slide to select coin amount:</p>
+        <input type="range" id="coinSlider" class="calc-slider" min="1000" max="25600" step="100" value="1000">
+        <div class="calc-price" id="coinPrice">1,000 🪙</div>
+        <div class="calc-price" id="usdPrice" style="font-size: 1.8rem;">$8 / ₹680</div>
+        <a href="#" class="btn btn-primary" id="buyNowBtn">BUY NOW ON WHATSAPP</a>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2026 Efootball Games Play Store</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    document.getElementById('buyNowBtn')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        let coins = document.getElementById('coinPrice').innerText;
+        window.open('https://wa.me/1234567890?text=I%20want%20to%20buy%20' + coins, '_blank');
+    });
+</script>
+</body>
+</html>

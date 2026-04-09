@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Proofs - Efootball Games Play Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0a0f;
+            background-image: radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 50%);
+            color: #e0e0e0;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #00ccff; border-radius: 10px; }
+
+        .navbar {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 2px solid #00ccff;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            font-family: 'Orbitron', monospace;
+        }
+        .logo span { color: #00ccff; -webkit-text-fill-color: #00ccff; }
+        .nav-links { display: flex; gap: 25px; flex-wrap: wrap; }
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 0;
+            position: relative;
+            transition: 0.3s;
+            font-family: 'Orbitron', monospace;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00ccff;
+            transition: 0.3s;
+            box-shadow: 0 0 8px #00ccff;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover,
+        .nav-links a.active { color: #00ccff; text-shadow: 0 0 5px #00ccff; }
+        .menu-toggle { display: none; font-size: 1.8rem; color: #00ccff; background: none; border: none; cursor: pointer; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; width: 100%; flex-direction: column; align-items: center; gap: 15px; padding: 20px 0 10px; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .navbar { padding: 15px 20px; }
+        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 40px 20px; }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .proof-card {
+            background: rgba(20,20,30,0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid #00ccff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+        .proof-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0,204,255,0.2);
+            border-color: #fff;
+        }
+        .proof-img {
+            width: 100%;
+            height: 220px;
+            background: #1a1a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #00ccff;
+            overflow: hidden;
+            border-bottom: 1px solid #00ccff40;
+        }
+        .proof-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .proof-content { padding: 20px; }
+        .proof-type {
+            display: inline-block;
+            background: rgba(0,204,255,0.2);
+            color: #00ccff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        .proof-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 8px; }
+        .proof-desc { color: #ccc; font-size: 0.9rem; }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 1px solid #00ccff;
+            background: transparent;
+            color: #00ccff;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #00ccff;
+            color: #0a0a0f;
+            border: none;
+            box-shadow: 0 0 15px rgba(0,204,255,0.5);
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0,204,255,0.8);
+        }
+        .footer {
+            background: #050508;
+            border-top: 1px solid #00ccff;
+            padding: 40px 20px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        .social-icons a {
+            color: #e0e0e0;
+            font-size: 1.8rem;
+            transition: 0.3s;
+        }
+        .social-icons a:hover { color: #00ccff; transform: translateY(-3px); }
+        @media (max-width: 768px) {
+            .proof-img { height: 180px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">EFOOTBALL <span>GP</span></a>
+    <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+    <div class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="shop.html">SHOP</a>
+        <a href="proofs.html" class="active">PROOFS</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 style="text-align: center; margin-bottom: 20px;">📸 SUCCESS PROOFS</h1>
+    <p style="text-align: center; margin-bottom: 40px; color: #00ccff;">Real transactions • Real customers • 100% trusted</p>
+
+    <div class="card-grid">
+        <!-- PROOF 1 -->
+        <div class="proof-card">
+            <div class="proof-img">
+                <img src="images/B98B333C-391C-4271-8560-5446962DCF01_BD8B4805-85B5-4F27-BBCC-FCFD02228FD8.JPG" alt="Proof 1" onerror="this.src='https://placehold.co/600x400/1a1a2a/00ccff?text=Proof+1'">
+            </div>
+            <div class="proof-content">
+                <span class="proof-type">BEAST ACCOUNT DELIVERY</span>
+                <div class="proof-title">3336 Account Sold</div>
+                <div class="proof-desc">Customer from USA Instant payment</div>
+            </div>
+        </div>
+
+        <!-- PROOF 2 -->
+        <div class="proof-card">
+            <div class="proof-img">
+                <img src="images/IMG_7423.JPG" alt="Proof 2" onerror="this.src='https://placehold.co/600x400/1a1a2a/00ccff?text=Proof+2'">
+            </div>
+            <div class="proof-content">
+                <span class="proof-type">ACCOUNT SALE</span>
+                <div class="proof-title">Legend Account Sold</div>
+                <div class="proof-desc">Customers from UAE • Instant payment</div>
+            </div>
+        </div>
+
+        <!-- PROOF 3 -->
+        <div class="proof-card">
+            <div class="proof-img">
+                <img src="images/IMG_7424.JPG" alt="Proof 3" onerror="this.src='https://placehold.co/600x400/1a1a2a/00ccff?text=Proof+3'">
+            </div>
+            <div class="proof-content">
+                <span class="proof-type">BUY</span>
+                <div class="proof-title">Account buy success</div>
+                <div class="proof-desc">Between Admin & English man • Safe</div>
+            </div>
+        </div>
+
+        <!-- PROOF 4 -->
+        <div class="proof-card">
+            <div class="proof-img">
+                <img src="images/IMG_7426.JPG" alt="Proof 4" onerror="this.src='https://placehold.co/600x400/1a1a2a/00ccff?text=Proof+4'">
+            </div>
+            <div class="proof-content">
+                <span class="proof-type">BEAST ACCOUNT DELIVERY</span>
+                <div class="proof-title">12,800 Coins</div>
+                <div class="proof-desc">Customer from USA • 8 minutes</div>
+            </div>
+        </div>
+
+        <!-- PROOF 5 -->
+        <div class="proof-card">
+            <div class="proof-img">
+                <img src="images/IMG_7425.JPG" alt="Proof 5" onerror="this.src='https://placehold.co/600x400/1a1a2a/00ccff?text=Proof+5'">
+            </div>
+            <div class="proof-content">
+                <span class="proof-type">ACCOUNT SALE</span>
+                <div class="proof-title">Epic Team Sold</div>
+                <div class="proof-desc">Customer from India</div>
+            </div>
+        </div>
+
+        <!-- PROOF 6 -->
+        <div class="proof-card">
+            <div class="proof-img">
+                <img src="images/IMG_7427.JPG" alt="Proof 6" onerror="this.src='https://placehold.co/600x400/1a1a2a/00ccff?text=Proof+6'">
+            </div>
+            <div class="proof-content">
+                <span class="proof-type">BEAST SALE</span>
+                <div class="proof-title">Account Delivery + Coins</div>
+                <div class="proof-desc">Customer from Canada • 5 minutes</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="contact.html" class="btn btn-primary">JOIN OUR COMMUNITY</a>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2026 Efootball Games Play Store | Official Konami Partner</p>
+</footer>
+
+<script>
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle')?.addEventListener('click', () => {
+        document.querySelector('.nav-links')?.classList.toggle('active');
+    });
+</script>
+</body>
+</html>
